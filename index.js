@@ -4,6 +4,7 @@ const config = require('./config.json');
 
 client.on('ready', () => {
   console.log(`Successfully signed in as ${client.user.tag}.`);
+  return client.user.setActivity(`${client.guilds.size} Servers`);
 });
 
 client.on('message', message => {
