@@ -1,0 +1,17 @@
+{
+  "name": "venom-bot",
+  "version": "1.0.0",
+  "description": "A bot to send announcements to the venom announcements server using the API wrapper Discord.js master branch.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord.js"
+  ],
+  "author": "Jyguy",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js"
+  }
+}
