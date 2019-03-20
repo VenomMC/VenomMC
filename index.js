@@ -1,39 +1,16 @@
 const Discord = require('discord.js');
+const fs = require('fs');
 const client = new Discord.Client();
-const config = require('./config.json');
+client.config = require('./config.json');
+client.Discord = Discord;
+client.escMD = Discord.Util.escapeMarkdown;
 
-client.on('ready', () => {
-  console.log(`Successfully signed in as ${client.user.tag}.`);
-  return client.user.setActivity(`${client.guilds.size} Servers`);
-});
+client.commands = new Discord.Collection();
 
-client.on('message', message => {
-  if (!message.guild || !message.guild.available) return;
-  if (message.author.bot) return;
-  if (!message.content.startsWith(config.prefix) || message.content === config.prefix) return;
+client.cmdList = fs.readdirSync('./commands').filter(f => f.endsWith('.js'));
+client.eventList = fs.readdirSync('./events').filter(f => f.endsWith('.js'));
 
-  const args = message.content.slice(config.prefix.length).split(/ +/g);
-  const cmd = args[0].toLowerCase();
+client.cmdList.forEach(cmd => client.commands.set(cmd.slice(0, -3), require(`./commands/${cmd}`)));
+client.eventList.forEach(event => require(`./events/${event}`).run(client));
 
-  switch (cmd) {
-    case 'announce':
-      const channel = message.guild.channels.find(chan => chan.type === 'text' && chan.name === 'announcements');
-      if (!channel) return message.reply('I did not find the announcements channel.');
-      if (!channel.permissionsFor(client.user).has(['VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS'])) return message.reply('I am missing permissions in the announcements channel. Please make sure I have the following permissions.\n\n`View Channel\nSend Messages\nEmbed Links`');
-
-      if (!args[1]) return message.reply('You have to provide content for me to announce!');
-      const content = args.slice(1).join(' ');
-
-      const embed = new Discord.MessageEmbed()
-        .setTitle('New Announcement')
-        .setFooter(`Sent by ${message.member.displayName}`, message.author.displayAvatarURL())
-        .setDescription(content)
-        .setColor(0x00FF00)
-        .setTimestamp();
-
-      channel.send(embed);
-      return message.channel.send('Successfully announced something to the announcements channel.');
-  }
-});
-
-client.login(config.token);
+client.login(client.config.token);

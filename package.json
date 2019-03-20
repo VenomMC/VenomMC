@@ -12,6 +12,7 @@
   "author": "Jyguy",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js"
+    "discord.js": "github:discordjs/discord.js",
+    "fs": "0.0.1-security"
   }
 }
