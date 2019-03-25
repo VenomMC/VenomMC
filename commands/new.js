@@ -31,3 +31,8 @@ module.exports.run = async (client, message, args) => {
 
   return message.channel.send(embed);
 };
+
+module.exports.help = {
+  desc: 'Creates a ticket.',
+  usage: 'new'
+};

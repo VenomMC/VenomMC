@@ -16,3 +16,8 @@ module.exports.run = (client, message, args) => {
   channel.send(embed);
   return message.channel.send('Successfully announced something to the announcements channel.');
 };
+
+module.exports.help = {
+  desc: 'Announces something to #announcements.',
+  usage: 'announce <Content>'
+};

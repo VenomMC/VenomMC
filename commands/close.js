@@ -9,3 +9,8 @@ module.exports.run = (client, message, args) => {
 
   return message.channel.delete();
 };
+
+module.exports.help = {
+  desc: 'Closes a ticket.',
+  usage: 'close'
+};
