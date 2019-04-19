@@ -23,6 +23,7 @@ module.exports.run = async (client, message, args) => {
       }
     ]
   });
+  channel.send('Hey! Thanks for creating a ticket. Our support team will get back to you as soon as possible!');
 
   const embed = new client.Discord.MessageEmbed()
     .setTitle('New Ticket Created')
