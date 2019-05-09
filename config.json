@@ -1,5 +1,10 @@
 {
   "token": "NDY5NjAyNTc2MjI1MjcxODE4.D09q-Q.TbNb8M8Zj8jBuGdss0LlNMpnI8s",
   "prefix": "+",
-  "ticketcategory": "558031322635960382"
+  "ticketcategory": "558031322635960382",
+  "officialserver": "465976798560256024",
+  "owners": [
+    "202556225160871936",
+    "288831103895076867"
+  ]
 }

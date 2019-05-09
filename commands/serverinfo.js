@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 module.exports.run = async (client, message, args) => {
   if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) return message.reply(':x: I do not have the required permission `Embed Links` in this channel.');
-  const body = await fetch('https://mcapi.us/server/status?ip=45.35.54.90&port=25570').then(res => res.json());
+  const body = await fetch('https://mcapi.us/server/status?ip=74.121.190.202&port=25583').then(res => res.json());
   if (body.status !== 'success') return message.reply(':x: Cannot retrieve server information at the time. Issue reoccurring? Contact Spiget.');
 
   const embed = new client.Discord.MessageEmbed()

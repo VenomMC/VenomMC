@@ -10,18 +10,11 @@ module.exports.run = async (client, message, args) => {
   const channel = await message.guild.channels.create(`ticket-${message.author.username}`, {
     parent: category,
     topic: message.author.id,
-    permissionOverwrites: [
-      {
-        id: message.author.id,
-        allow: ['READ_MESSAGES', 'SEND_MESSAGES'],
-        type: 'member'
-      },
-      {
-        id: message.guild.id, // @everyone Role
-        deny: ['READ_MESSAGES'],
-        type: 'role'
-      }
-    ]
+    permissionOverwrites: category.permissions
+  });
+  channel.createOverwrite(message.author, {
+    VIEW_CHANNEL: true,
+    SEND_MESSAGES: true
   });
   channel.send('Hey! Thanks for creating a ticket. Our support team will get back to you as soon as possible!');
 
