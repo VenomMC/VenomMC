@@ -9,7 +9,9 @@ module.exports.run = (client, message, args) => {
   if (!args[2]) return message.reply(':x: You have to provide a message for me to say!');
   const msg = args.slice(2).join(' ');
 
-  channel.send(msg);
+  channel.send(msg, {
+    disableEveryone: false
+  });
   return message.delete();
 };
 
