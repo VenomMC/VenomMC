@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const client = new Discord.Client();
+const client = new Discord.Client({
+  disableEveryone: true
+});
 client.config = require('./config.json');
 client.Discord = Discord;
 client.escMD = Discord.Util.escapeMarkdown;
