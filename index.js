@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client({
@@ -15,4 +16,4 @@ client.eventList = fs.readdirSync('./events').filter(f => f.endsWith('.js'));
 client.cmdList.forEach(cmd => client.commands.set(cmd.slice(0, -3), require(`./commands/${cmd}`)));
 client.eventList.forEach(event => require(`./events/${event}`).run(client));
 
-client.login(client.config.token);
+client.login(process.env.BOT_TOKEN);
