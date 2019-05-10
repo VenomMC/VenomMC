@@ -12,7 +12,7 @@ module.exports.run = (client, message, args) => {
   } else {
     const cmd = args[1].toLowerCase();
     if (!client.commands.has(cmd)) return message.reply(`:x: I did not find \`${client.escMD(cmd)}\` from my commands list.`);
-    if (client.commands.get(cmd).private) return message.reply(':x: Sorry, but that command is private.');
+    if (client.commands.get(cmd).private && !client.config.owners.includes(message.author.id)) return message.reply(':x: Sorry, but that command is private.');
 
     const info = client.commands.get(cmd).help;
     const embed = new client.Discord.MessageEmbed()
