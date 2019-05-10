@@ -1,4 +1,4 @@
-module.exports.run = (client) => {
+module.exports.run = client => {
   return client.on('message', message => {
     if (!message.guild || !message.guild.available) return;
     if (message.author.bot) return;
