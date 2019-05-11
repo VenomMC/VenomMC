@@ -2,6 +2,8 @@ module.exports.run = client => {
   return client.on('ready', () => {
     console.log(`Successfully signed in as ${client.user.tag}.`);
 
+    client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 10);
+
     const activities = [
       'you',
       '<users> Users'

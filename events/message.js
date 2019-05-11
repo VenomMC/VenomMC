@@ -8,6 +8,11 @@ module.exports.run = client => {
     const cmd = args[0].toLowerCase();
 
     if (!client.commands.has(cmd)) return;
+
+    if (client.user.presence.status === 'idle') client.user.setStatus('online');
+    else clearTimeout(client.timeout);
+    client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 10);
+
     return client.commands.get(cmd).run(client, message, args);
   });
 };
