@@ -10,7 +10,7 @@ module.exports.run = client => {
     client.user.setActivity(activities[0], { type: 'WATCHING' });
     setInterval(() => {
       client.user.setActivity(activities[step].replace('<users>', client.users.size), { type: 'WATCHING' });
-      if (step === activities.length - 1) step === 0;
+      if (step === activities.length - 1) step = 0;
       else step += 1;
     }, 1000 * 60 * 10);
   });
