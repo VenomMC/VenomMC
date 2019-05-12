@@ -1,8 +1,11 @@
 module.exports.run = client => {
   return client.on('ready', () => {
     console.log(`Successfully signed in as ${client.user.tag}.`);
-    const channel = client.channels.find(c => c.name === 'staff-chat' && c.type === 'text');
-    if (channel && channel.permissionsFor(client.user).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) channel.send('New build finished :white_check_mark:');
+    client.config.owners.forEach(async id => {
+      const user = await client.users.fetch(id).catch(() => null);
+      if (!user) return;
+      user.send('New build finished :white_check_mark:');
+    });
 
     client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
 
