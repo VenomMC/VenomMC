@@ -20,7 +20,7 @@ module.exports.run = client => {
     setInterval(() => {
       const name = Object.keys(activities)[step];
       client.user.setActivity(name.replace('<users>', client.users.size), { type: activities[name] });
-      if (step === activities.length - 1) step = 0;
+      if (step === Object.keys(activities).length - 1) step = 0;
       else step += 1;
     }, 1000 * 60 * 10);
   });
