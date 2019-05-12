@@ -18,7 +18,7 @@ module.exports.run = client => {
       'being AFK': 'PLAYING'
     };
     let step = 1;
-    client.user.setActivity(Object.keys(activities)[0], { type: Object.values(activities)[0] });
+    client.user.setActivity(`${Object.keys(activities)[0]} | ${client.config.prefix}help`, { type: Object.values(activities)[0] });
     setInterval(() => {
       const name = Object.keys(activities)[step];
       client.user.setActivity(`${name.replace('<users>', client.users.size)} | ${client.config.prefix}help`, { type: activities[name] });
