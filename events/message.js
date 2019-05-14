@@ -7,6 +7,10 @@ module.exports.run = client => {
     const args = message.content.slice(client.config.prefix.length).split(/ +/g);
     const cmd = args[0].toLowerCase();
 
+    if (/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi.test(message.content) &&
+      message.channel.permissionsFor(client.user).has('MANAGE_MESSAGES') &&
+      !client.config.owners.includes(message.author.id)) return message.delete();
+
     if (!client.commands.has(cmd)) return;
 
     if (client.user.presence.status === 'idle') client.user.setStatus('online');
