@@ -10,6 +10,7 @@ module.exports.run = (client, message, args) => {
   const msg = args.slice(2).join(' ');
 
   try {
+    message.channel.send(`Successfully sent a DM to ${member.user.tag}.`);
     return member.send(msg);
   } catch (e) {
     return message.reply(':x: That member either had DMs disabled or blocked the bot.');
