@@ -7,7 +7,7 @@ function sendMsg(client, member) {
 }
 
 module.exports.run = client => {
-  return client.on('guildMemberAdd', member => {
+  return client.on('guildMemberRemove', member => {
     if (!member.guild.available) return;
 
     sendMsg(client, member);
