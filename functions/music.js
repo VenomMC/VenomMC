@@ -4,6 +4,7 @@ const youtube = new (require('simple-youtube-api'))(process.env.YT_API_KEY);
 module.exports = {
   connection: null,
   dispatcher: null,
+  looping: false,
   queue: [],
   playing: false,
   skippers: [],
@@ -24,7 +25,8 @@ module.exports = {
     this.dispatcher = this.connection.play(await ytdl(video.url), { type: 'opus' });
     this.dispatcher.setVolumeLogarithmic(0.4);
     this.dispatcher.once('finish', () => {
-      this.queue.shift();
+      if (this.looping) this.queue.push(this.queue.shift());
+      else this.queue.shift();
       this.skippers = [];
       this.skips = 0;
 
@@ -56,11 +58,5 @@ module.exports = {
     else embed.setTitle(`Added to Queue: ${video.title}`);
 
     return channel.send(embed);
-  },
-
-  skipSong() {
-    this.skips = 0;
-    this.skippers = [];
-    this.dispatcher.end();
   }
 };

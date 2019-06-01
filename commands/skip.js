@@ -7,7 +7,7 @@ module.exports.run = (client, message, args) => {
   music.skips += 1;
   const requiredSkips = Math.floor(message.member.voice.channel.members.filter(m => !m.user.bot).size / 2);
   if (music.skips >= requiredSkips) {
-    music.skipSong();
+    music.dispatcher.end();
     return message.channel.send('Successfully skipped a song.');
   }
 
