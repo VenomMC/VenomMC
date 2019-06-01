@@ -6,6 +6,8 @@ module.exports = {
   dispatcher: null,
   queue: [],
   playing: false,
+  skippers: [],
+  skips: 0,
 
   endSession() {
     this.connection = null;
@@ -54,5 +56,11 @@ module.exports = {
     else embed.setTitle(`Added to Queue: ${video.title}`);
 
     return channel.send(embed);
+  },
+
+  skipSong() {
+    this.skips = 0;
+    this.skippers = [];
+    this.dispatcher.end();
   }
 };
