@@ -13,7 +13,7 @@ function sendMsg(member) {
   if (!channel.permissionsFor(member.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return;
 
   channel.send(`
-Hello ${member}, Welcome to **Venom | Official Discord!**
+Hello ${member.user.tag}, Welcome to **Venom | Official Discord!**
 
 :large_blue_diamond: •[Information]• :large_blue_diamond:
 •IP: play.venommc.net 

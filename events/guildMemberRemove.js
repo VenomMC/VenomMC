@@ -3,7 +3,7 @@ function sendMsg(client, member) {
   if (!channel) return;
   if (!channel.permissionsFor(member.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return;
 
-  channel.send(`:negative_squared_cross_mark: ${member} left **${client.escMD(member.guild.name)}**`);
+  channel.send(`:negative_squared_cross_mark: ${member.user.tag} left **${client.escMD(member.guild.name)}**`);
 }
 
 module.exports.run = client => {
