@@ -10,7 +10,7 @@
     "discord.js"
   ],
   "author": "Jyguy",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^8.0.0",
