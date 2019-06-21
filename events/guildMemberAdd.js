@@ -13,14 +13,10 @@ function sendMsg(member) {
   if (!channel.permissionsFor(member.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return;
 
   channel.send(`
-Hello ${member.user.tag}, Welcome to **Venom | Official Discord!**
-
-:large_blue_diamond: •[Information]• :large_blue_diamond:
-•IP: play.venommc.net 
-• Website: https://www.venommc.net/
-• Discord: https://discord.gg/ayjd42K
-• Sponsor: HostLabs - https://discord.gg/CETRcad
-((Make a new invite for personal use))
+  Hello ${member} (${member.user.tag}), Welcome to VenomMC :snake:!! Please read the rules before doing anything else!
+  Make sure to check out our hosting partners, HostLabs. You can find their discord below:
+  HostLabs - https://discord.gg/CETRcad
+  You can find all the information for the server inside of the discord. Have a great time in VenomMC!
   `);
 }
 
