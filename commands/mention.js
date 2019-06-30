@@ -6,6 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.guild.me.hasPermission('MANAGE_ROLES')) return message.reply(':x: I am missing the `Manage Roles` permission.');
   if (role.position >= message.guild.me.roles.highest.position) return message.reply(':x: The notifications role must be below my highest role.');
 
+  message.delete();
   if (!role.mentionable) await role.setMentionable(true);
   await message.channel.send(role.toString());
   return await role.setMentionable(false);
