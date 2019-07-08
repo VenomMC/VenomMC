@@ -2,6 +2,8 @@ module.exports.run = client => {
   return client.on('message', message => {
     if (!message.guild || !message.guild.available) return;
     if (message.author.bot) return;
+
+    client.functions.get('checkLOA').run(message);
     if (!message.content.startsWith(client.config.prefix) || message.content === client.config.prefix) return;
 
     const args = message.content.slice(client.config.prefix.length).split(/ +/g);
