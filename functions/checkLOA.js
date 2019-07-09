@@ -1,10 +1,17 @@
 const { MessageEmbed } = require('discord.js');
+const acceptedReasons = [
+  'family issues',
+  'vacation',
+  'school related',
+  'other'
+];
 
 module.exports.run = message => {
   if (message.channel.name !== 'staff-loa') return;
   if (!message.channel.permissionsFor(message.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return;
   if (!message.content.includes('Reason: ')) return;
-  if (message.content.includes('Reason: I don\'t have time')) return message.reply('Declined :x:');
+  if (message.content.toLowerCase().includes('reason: i don\'t have time')) return message.reply('Declined :x:');
+  if (!acceptedReasons.some(r => message.content.toLowerCase().includes(`reason: ${r}`))) return;
 
   const embed = new MessageEmbed()
     .setTitle('New LOA Reported')
