@@ -3,6 +3,7 @@ const acceptedReasons = [
   'family issues',
   'vacation',
   'school related',
+  'holiday',
   'other'
 ];
 
