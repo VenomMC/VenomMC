@@ -7,7 +7,8 @@ const activities = {
   'Anime': 'WATCHING',
   'my screen': 'WATCHING',
   'with my cats': 'PLAYING',
-  'being AFK': 'PLAYING'
+  'being AFK': 'PLAYING',
+  'play.venommc.net': 'PLAYING'
 };
 
 function checkStream(client) {
