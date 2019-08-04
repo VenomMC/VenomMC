@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.voice.channel) return message.reply(':x: You must be in a voice channel to use this command.');
   const vc = message.member.voice.channel;
   if (music.playing && vc.id !== message.guild.me.voice.channelID) return message.reply(':x: You must be in the same voice channel as me to use that command.');
-  if (!vc.permissionsFor(client.user).has(['CONNECT', 'SPEAK'])) return message.reply(':x: I do not have the required permissions in your voice channel.\n\n`Connect\nSpeak`');
+  if (!vc.permissionsFor(client.user).has([ 'CONNECT', 'SPEAK' ])) return message.reply(':x: I do not have the required permissions in your voice channel.\n\n`Connect\nSpeak`');
   if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) return message.reply(':x: I do not have the required permission `Embed Links` in this channel.');
 
   if (music.queue.length >= 10) return message.reply(':x: The maximum amount of songs in the queue has been reached.');
@@ -21,6 +21,8 @@ module.exports.run = async (client, message, args) => {
     music.playing = true;
     music.playMusic(video, vc);
   }
+
+  return undefined;
 };
 
 module.exports.help = {

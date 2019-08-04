@@ -23,5 +23,8 @@
     "node-opus": "^0.3.2",
     "simple-youtube-api": "^5.2.1",
     "ytdl-core-discord": "^1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0"
   }
 }

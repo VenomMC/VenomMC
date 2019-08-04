@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core-discord');
-const youtube = new (require('simple-youtube-api'))(process.env.YT_API_KEY);
+const sya = require('simple-youtube-api');
+const youtube = new sya(process.env.YT_API_KEY);
 
 module.exports = {
   connection: null,
@@ -10,7 +11,7 @@ module.exports = {
   skippers: [],
   skips: 0,
 
-  endSession() {
+  endSession: function () {
     this.connection = null;
     this.dispatcher = null;
     this.queue = [];
@@ -19,7 +20,7 @@ module.exports = {
     this.skips = 0;
   },
 
-  async playMusic(video, vc) {
+  playMusic: async function (video, vc) {
     if (!this.connection) this.connection = await vc.join();
 
     this.dispatcher = this.connection.play(await ytdl(video.url), { type: 'opus' });
@@ -39,14 +40,14 @@ module.exports = {
     });
   },
 
-  async searchVideo(q) {
+  searchVideo: async function (q) {
     const videos = await youtube.searchVideos(q, 1);
     if (!videos[0]) return false;
 
     return videos[0];
   },
 
-  sendInfo(video, channel, client) {
+  sendInfo: function (video, channel, client) {
     const embed = new client.Discord.MessageEmbed()
       .setURL(video.url)
       .setThumbnail(video.thumbnails.high.url)

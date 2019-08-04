@@ -9,21 +9,21 @@ module.exports.run = (client, message, args) => {
       .setDescription(commands.join('\n'));
 
     return message.channel.send(embed);
-  } else {
-    const cmd = args[1].toLowerCase();
-    if (!client.commands.has(cmd)) return message.reply(`:x: I did not find \`${client.escMD(cmd)}\` from my commands list.`);
-    if (client.commands.get(cmd).private && !client.config.owners.includes(message.author.id)) return message.reply(':x: Sorry, but that command is private.');
-
-    const info = client.commands.get(cmd).help;
-    const embed = new client.Discord.MessageEmbed()
-      .setTitle(`${client.config.prefix + cmd} Command Info`)
-      .addField('Description', info.desc, true)
-      .addField('Usage', client.config.prefix + info.usage, true)
-      .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
-      .setColor(0x00FF00);
-
-    return message.channel.send(embed);
   }
+
+  const cmd = args[1].toLowerCase();
+  if (!client.commands.has(cmd)) return message.reply(`:x: I did not find \`${client.escMD(cmd)}\` from my commands list.`);
+  if (client.commands.get(cmd).private && !client.config.owners.includes(message.author.id)) return message.reply(':x: Sorry, but that command is private.');
+
+  const info = client.commands.get(cmd).help;
+  const embed = new client.Discord.MessageEmbed()
+    .setTitle(`${client.config.prefix + cmd} Command Info`)
+    .addField('Description', info.desc, true)
+    .addField('Usage', client.config.prefix + info.usage, true)
+    .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
+    .setColor(0x00FF00);
+
+  return message.channel.send(embed);
 };
 
 module.exports.help = {

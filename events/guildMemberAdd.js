@@ -1,16 +1,16 @@
-function addRole(member) {
+function addRole (member) {
   if (!member.guild.me.hasPermission('MANAGE_ROLES')) return;
   const role = member.guild.roles.find(r => r.name === 'Member');
   if (!role) return;
   if (role.position >= member.guild.me.roles.highest.position) return;
 
-  return member.roles.add(role);
+  member.roles.add(role);
 }
 
-function sendMsg(member) {
+function sendMsg (member) {
   const channel = member.guild.channels.find(c => c.name === 'welcome-goodbye');
   if (!channel) return;
-  if (!channel.permissionsFor(member.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return;
+  if (!channel.permissionsFor(member.guild.me).has([ 'VIEW_CHANNEL', 'SEND_MESSAGES' ])) return;
 
   channel.send(`
 Hello ${member}, Welcome to **Venom | Official Discord!**

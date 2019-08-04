@@ -1,7 +1,7 @@
-function sendMsg(client, member) {
+function sendMsg (client, member) {
   const channel = member.guild.channels.find(c => c.name === 'welcome-goodbye');
   if (!channel) return;
-  if (!channel.permissionsFor(member.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return;
+  if (!channel.permissionsFor(member.guild.me).has([ 'VIEW_CHANNEL', 'SEND_MESSAGES' ])) return;
 
   channel.send(`:negative_squared_cross_mark: ${member.user.tag} left **${client.escMD(member.guild.name)}**`);
 }

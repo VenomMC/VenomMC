@@ -8,7 +8,7 @@ module.exports.run = (client, message, args) => {
 
   const channel = message.guild.channels.find(c => c.type === 'text' && c.name === 'beta-tester-bug-reports');
   if (!channel) return message.reply(':x: I did not find the `beta-tester-bug-reports` channel!');
-  if (!channel.permissionsFor(client.user).has(['VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS'])) return message.reply(':x: I do not have permissions in the beta bug reports channel.');
+  if (!channel.permissionsFor(client.user).has([ 'VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS' ])) return message.reply(':x: I do not have permissions in the beta bug reports channel.');
   const embed = new client.Discord.MessageEmbed()
     .setTitle('New Beta Suggestion / Bug Reported')
     .setDescription(info)

@@ -1,6 +1,8 @@
-function clean(text) {
-  if (typeof (text) === 'string') {
-    return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+const util = require('util');
+
+function clean (text) {
+  if (typeof text === 'string') {
+    return text.replace(/`/g, `\`${String.fromCharCode(8203).replace(/@/g, `@${String.fromCharCode(8203)}`)}`);
   }
 
   return text;
@@ -15,7 +17,7 @@ module.exports.run = (client, message, args) => {
 
   try {
     let evaled = eval(code);
-    if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
+    if (typeof evaled !== 'string') evaled = util.inspect(evaled);
 
     const embed = new client.Discord.MessageEmbed()
       .setAuthor('Evaluation')

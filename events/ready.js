@@ -11,7 +11,7 @@ const activities = {
   'play.venommc.net': 'PLAYING'
 };
 
-function checkStream(client) {
+function checkStream (client) {
   const member = client.guilds.first().members.get(client.config.owners[0]);
 
   return setInterval(() => {
@@ -25,10 +25,12 @@ function checkStream(client) {
     } else if (client.user.presence.activity.type === 'STREAMING' && !isStreaming) {
       return client.user.setActivity('you', { type: 'WATCHING' });
     }
+
+    return undefined;
   }, 10000);
 }
 
-async function dmOwners(client) {
+async function dmOwners (client) {
   return client.config.owners.forEach(async id => {
     const user = await client.users.fetch(id).catch(() => null);
     if (!user) return;
@@ -36,7 +38,7 @@ async function dmOwners(client) {
   });
 }
 
-function setActivity(client) {
+function setActivity (client) {
   let step = 1;
   client.user.setActivity(`${Object.keys(activities)[0]} | ${client.config.prefix}help`, { type: Object.values(activities)[0] });
   setInterval(() => {

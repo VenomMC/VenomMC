@@ -4,7 +4,7 @@ module.exports.run = (client, message, args) => {
   if (!args[1]) return message.reply(':x: You have to proivde a channel for me to say something in!');
   const channel = message.guild.channels.get(args[1].replace(/[<>#]/g, ''));
   if (!channel) return message.reply(':x: The channel you provided was invalid or missing.');
-  if (!channel.permissionsFor(client.user).has(['VIEW_CHANNEL', 'SEND_MESSAGES'])) return message.reply(':x: I am missing permissions from the said channel.\n\n`View Channels\nSend Messages`');
+  if (!channel.permissionsFor(client.user).has([ 'VIEW_CHANNEL', 'SEND_MESSAGES' ])) return message.reply(':x: I am missing permissions from the said channel.\n\n`View Channels\nSend Messages`');
 
   if (!args[2]) return message.reply(':x: You have to provide a message for me to say!');
   const msg = args.slice(2).join(' ');

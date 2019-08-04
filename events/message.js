@@ -9,9 +9,9 @@ module.exports.run = client => {
     const args = message.content.slice(client.config.prefix.length).split(/ +/g);
     const cmd = args[0].toLowerCase();
 
-    if (/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi.test(message.content) &&
+    if ((/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi).test(message.content) &&
       message.channel.permissionsFor(client.user).has('MANAGE_MESSAGES') &&
-      !client.config.owners.includes(message.author.id)) return message.delete();
+      !client.config.owners.includes(message.author.id)) return message.delete(); // eslint-disable-line consistent-return
 
     if (!client.commands.has(cmd)) return;
 
@@ -19,6 +19,6 @@ module.exports.run = client => {
     else clearTimeout(client.timeout);
     client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
 
-    return client.commands.get(cmd).run(client, message, args);
+    client.commands.get(cmd).run(client, message, args);
   });
 };
