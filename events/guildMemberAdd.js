@@ -24,11 +24,9 @@ Hello ${member}, Welcome to **Venom | Official Discord!**
   `);
 }
 
-module.exports.run = client => {
-  return client.on('guildMemberAdd', member => {
-    if (!member.guild.available) return;
+module.exports.run = (client, member) => {
+  if (!member.guild.available) return;
 
-    addRole(member);
-    sendMsg(member);
-  });
+  addRole(member);
+  sendMsg(member);
 };

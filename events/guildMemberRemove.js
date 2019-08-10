@@ -6,10 +6,8 @@ function sendMsg (client, member) {
   channel.send(`:negative_squared_cross_mark: ${member.user.tag} left **${client.escMD(member.guild.name)}**`);
 }
 
-module.exports.run = client => {
-  return client.on('guildMemberRemove', member => {
-    if (!member.guild.available) return;
+module.exports.run = (client, member) => {
+  if (!member.guild.available) return;
 
-    sendMsg(client, member);
-  });
+  sendMsg(client, member);
 };

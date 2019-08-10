@@ -52,12 +52,10 @@ function setActivity (client) {
 }
 
 module.exports.run = client => {
-  return client.once('ready', () => {
-    console.log(`Successfully signed in as ${client.user.tag}.`);
-    client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
+  console.log(`Successfully signed in as ${client.user.tag}.`);
+  client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
 
-    checkStream(client);
-    dmOwners(client);
-    setActivity(client);
-  });
+  checkStream(client);
+  dmOwners(client);
+  setActivity(client);
 };

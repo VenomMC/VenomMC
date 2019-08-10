@@ -1,3 +1,1 @@
-module.exports.run = client => {
-  return client.on('error', console.error);
-};
+module.exports.run = (client, err) => console.error(err);
