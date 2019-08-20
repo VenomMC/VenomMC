@@ -30,14 +30,6 @@ function checkStream (client) {
   }, 10000);
 }
 
-async function dmOwners (client) {
-  return client.config.owners.forEach(async id => {
-    const user = await client.users.fetch(id).catch(() => null);
-    if (!user) return;
-    user.send('New build finished :white_check_mark:');
-  });
-}
-
 function setActivity (client) {
   let step = 1;
   client.user.setActivity(`${Object.keys(activities)[0]} | ${client.config.prefix}help`, { type: Object.values(activities)[0] });
@@ -56,6 +48,5 @@ module.exports.run = client => {
   client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
 
   checkStream(client);
-  dmOwners(client);
   setActivity(client);
 };
