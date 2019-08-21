@@ -26,6 +26,7 @@ Hello ${member}, Welcome to **Venom | Official Discord!**
 
 module.exports.run = (client, member) => {
   if (!member.guild.available) return;
+  if (member.guild.id !== client.config.officialserver) return;
 
   addRole(member);
   sendMsg(member);

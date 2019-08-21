@@ -8,6 +8,7 @@ function sendMsg (client, member) {
 
 module.exports.run = (client, member) => {
   if (!member.guild.available) return;
+  if (member.guild.id !== client.config.officialserver) return;
 
   sendMsg(client, member);
 };

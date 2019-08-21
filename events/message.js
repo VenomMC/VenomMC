@@ -2,7 +2,7 @@ module.exports.run = async (client, message) => {
   if (!message.guild || !message.guild.available) return;
   if (message.author.bot) return;
 
-  client.functions.get('checkLOA').run(message);
+  if (message.guild.id === client.config.officialserver) client.functions.get('checkLOA').run(message);
   if (!message.content.startsWith(client.config.prefix) || message.content === client.config.prefix) return;
 
   const args = message.content.slice(client.config.prefix.length).split(/ +/g);
@@ -10,7 +10,8 @@ module.exports.run = async (client, message) => {
 
   if ((/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi).test(message.content) &&
       message.channel.permissionsFor(client.user).has('MANAGE_MESSAGES') &&
-      !client.config.owners.includes(message.author.id)) return message.delete(); // eslint-disable-line consistent-return
+      !client.config.owners.includes(message.author.id) &&
+      message.guild.id === client.config.officialserver) return message.delete(); // eslint-disable-line consistent-return
 
   if (!client.commands.has(cmd)) return;
 
