@@ -14,5 +14,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   desc: 'Pings the notification role.',
-  usage: 'mention'
+  usage: 'mention',
+  venom: true
 };

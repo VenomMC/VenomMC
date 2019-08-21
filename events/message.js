@@ -18,5 +18,7 @@ module.exports.run = async (client, message) => {
   else clearTimeout(client.timeout);
   client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
 
-  client.commands.get(cmd).run(client, message, args);
+  const info = client.commands.get(cmd);
+  if (info.help.venom && message.guild.id === client.config.officialserver) info.run(client, message, args);
+  else if (!info.help.venom) info.run(client, message, args);
 };

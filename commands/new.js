@@ -28,5 +28,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   desc: 'Creates a ticket.',
-  usage: 'new'
+  usage: 'new',
+  venom: true
 };

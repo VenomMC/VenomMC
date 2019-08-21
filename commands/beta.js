@@ -21,5 +21,6 @@ module.exports.run = (client, message, args) => {
 
 module.exports.help = {
   desc: 'Reports / Suggests something to the bug-tester channel.',
-  usage: 'beta <Suggestion/Bug>'
+  usage: 'beta <Suggestion/Bug>',
+  venom: true
 };

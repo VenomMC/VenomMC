@@ -15,5 +15,6 @@ module.exports.run = (client, message, args) => {
 
 module.exports.help = {
   desc: 'Locks all the staff channels.',
-  usage: 'stafflock'
+  usage: 'stafflock',
+  venom: true
 };

@@ -12,5 +12,6 @@ module.exports.run = (client, message, args) => {
 
 module.exports.help = {
   desc: 'Closes a ticket.',
-  usage: 'close'
+  usage: 'close',
+  venom: true
 };
