@@ -39,7 +39,7 @@ function setActivity (client) {
 
     let name = Object.keys(activities)[step];
     if (name === 'dadjoke') {
-      const json = await client.fetch('https://icanhazdadjoke.com/').then(res => res.json());
+      const json = await client.fetch('https://icanhazdadjoke.com/', { headers: { Accept: 'application/json' } }).then(res => res.json());
       if (!json.joke) name = 'Dad API Unavailable';
       else name = json.joke;
     }
