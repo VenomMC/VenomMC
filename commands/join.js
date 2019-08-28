@@ -7,7 +7,7 @@ module.exports.run = (client, message, args) => {
   return message.channel.send('Successfully joined your voice channel.');
 };
 
-module.exports.desc = {
+module.exports.help = {
   desc: 'Joins your voice channel.',
   usage: 'join'
 };
