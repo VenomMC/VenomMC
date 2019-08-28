@@ -9,6 +9,7 @@ const client = new Discord.Client({
 client.config = require('./config.json');
 client.Discord = Discord;
 client.escMD = Discord.Util.escapeMarkdown;
+client.fetch = require('node-fetch');
 client.leaveTimer = null;
 
 client.commands = new Discord.Collection();

@@ -8,7 +8,8 @@ const activities = {
   'my screen': 'WATCHING',
   'with my cats': 'PLAYING',
   'being AFK': 'PLAYING',
-  'play.venommc.net': 'PLAYING'
+  'play.venommc.net': 'PLAYING',
+  'dadjoke': 'PLAYING'
 };
 
 function checkStream (client) {
@@ -33,13 +34,18 @@ function checkStream (client) {
 function setActivity (client) {
   let step = 1;
   client.user.setActivity(`${Object.keys(activities)[0]} | ${client.config.prefix}help`, { type: Object.values(activities)[0] });
-  setInterval(() => {
+  setInterval(async () => {
     if (client.user.presence.activity.type === 'STREAMING') return;
 
-    const name = Object.keys(activities)[step];
+    let name = Object.keys(activities)[step];
+    if (name === 'dadjoke') {
+      const json = await client.fetch('https://icanhazdadjoke.com/').then(res => res.json());
+      if (!json.joke) name = 'Dad API Unavailable';
+      else name = json.joke;
+    }
     client.user.setActivity(`${name.replace('<users>', client.users.size)} | ${client.config.prefix}help`, { type: activities[name] });
-    if (step === Object.keys(activities).length - 1) step = 0;
-    else step += 1;
+    if (step === Object.keys(activities).length - 1) step = 0; // eslint-disable-line require-atomic-updates
+    else step += 1; // eslint-disable-line require-atomic-updates
   }, 1000 * 60 * 10);
 }
 
