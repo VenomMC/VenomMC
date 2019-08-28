@@ -3,6 +3,7 @@ module.exports.run = async (client, message, args) => {
   if (music.connection && music.connection.channel.id !== message.member.voice.channelID) return message.reply(':x: You must be in the same voice channel as me to use this command.');
 
   if (music.connection) music.connection.channel.leave();
+  else if (message.guild.me.voice.channel) return message.guild.me.voice.channel.leave();
   music.endSession();
   return message.channel.send('Successfully left the voice channel.');
 };
