@@ -2,6 +2,10 @@ module.exports.run = async (client, message) => {
   if (!message.guild || !message.guild.available) return;
   if (message.author.bot) return;
 
+  if (message.content.toLowerCase().includes('no u')) {
+    if (client.nou[message.author.id]) client.nou[message.author.id] += 1;
+    else client.nou[message.author.id] = 1;
+  }
   if (message.guild.id === client.config.officialserver) client.functions.get('checkLOA').run(message);
   if (!message.content.startsWith(client.config.prefix) || message.content === client.config.prefix) return;
 

@@ -11,6 +11,7 @@ client.Discord = Discord;
 client.escMD = Discord.Util.escapeMarkdown;
 client.fetch = require('node-fetch');
 client.leaveTimer = null;
+client.nou = {};
 
 client.commands = new Discord.Collection();
 client.functions = new Discord.Collection();
