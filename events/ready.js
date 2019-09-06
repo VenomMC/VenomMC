@@ -1,7 +1,3 @@
-const activities = {
-  dadjoke: 'PLAYING'
-};
-
 function checkStream (client) {
   const member = client.guilds.first().members.get(client.config.owners[0]);
 
@@ -21,21 +17,19 @@ function checkStream (client) {
   }, 10000);
 }
 
-function setActivity (client) {
-  let step = 1;
-  client.user.setActivity(`${Object.keys(activities)[0]} | ${client.config.prefix}help`, { type: Object.values(activities)[0] });
+async function setActivity (client) {
+  let name = null;
+  let json = await client.fetch('https://icanhazdadjoke.com/', { headers: { Accept: 'application/json' } }).then(res => res.json());
+  if (!json.joke) name = 'Dad API Unavailable';
+  else name = json.joke;
+  client.user.setActivity(`${name} | ${client.config.prefix}help`);
   setInterval(async () => {
     if (client.user.presence.activity.type === 'STREAMING') return;
 
-    let name = Object.keys(activities)[step];
-    if (name === 'dadjoke') {
-      const json = await client.fetch('https://icanhazdadjoke.com/', { headers: { Accept: 'application/json' } }).then(res => res.json());
-      if (!json.joke) name = 'Dad API Unavailable';
-      else name = json.joke;
-    }
-    client.user.setActivity(`${name} | ${client.config.prefix}help`, { type: activities[name] });
-    if (step === Object.keys(activities).length - 1) step = 0; // eslint-disable-line require-atomic-updates
-    else step += 1; // eslint-disable-line require-atomic-updates
+    json = await client.fetch('https://icanhazdadjoke.com/', { headers: { Accept: 'application/json' } }).then(res => res.json());
+    if (!json.joke) name = 'Dad API Unavailable';
+    else name = json.joke;
+    client.user.setActivity(`${name} | ${client.config.prefix}help`);
   }, 1000 * 60 * 10);
 }
 
