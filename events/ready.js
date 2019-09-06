@@ -1,15 +1,5 @@
 const activities = {
-  'you': 'WATCHING',
-  '<users> Users and <servers> Servers': 'WATCHING',
-  'Jyguy at School': 'WATCHING',
-  'Cat Videos': 'WATCHING',
-  'People': 'WATCHING',
-  'Anime': 'WATCHING',
-  'my screen': 'WATCHING',
-  'with my cats': 'PLAYING',
-  'being AFK': 'PLAYING',
-  'play.venommc.net': 'PLAYING',
-  'dadjoke': 'PLAYING'
+  dadjoke: 'PLAYING'
 };
 
 function checkStream (client) {
@@ -43,7 +33,7 @@ function setActivity (client) {
       if (!json.joke) name = 'Dad API Unavailable';
       else name = json.joke;
     }
-    client.user.setActivity(`${name.replace('<users>', client.users.size).replace('<servers>', client.guilds.size)} | ${client.config.prefix}help`, { type: activities[name] });
+    client.user.setActivity(`${name} | ${client.config.prefix}help`, { type: activities[name] });
     if (step === Object.keys(activities).length - 1) step = 0; // eslint-disable-line require-atomic-updates
     else step += 1; // eslint-disable-line require-atomic-updates
   }, 1000 * 60 * 10);
