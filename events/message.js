@@ -11,7 +11,9 @@ module.exports.run = async (client, message) => {
   if (message.guild.id === client.config.officialserver) client.functions.get('checkLOA').run(message);
 
   const automod = client.functions.get('automod').run(message);
-  if (automod === 'flood') return message.delete();
+  if (!message.member.hasPermission('ADMINISTRATOR')) {
+    if (automod === 'flood') return message.delete();
+  }
 
   if (!message.content.startsWith(client.config.prefix) || message.content === client.config.prefix) return;
 

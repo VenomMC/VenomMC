@@ -1,8 +1,6 @@
 let arr = [];
 
 module.exports.run = message => {
-  if (message.member.hasPermission('ADMINISTRATOR')) return false;
-
   if (arr[0] === message.author.id) {
     if (arr[1] >= 8) return 'flood';
     arr[1] += 1;
