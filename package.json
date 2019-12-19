@@ -20,8 +20,10 @@
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
+    "m3u8stream": "^0.6.3",
     "node-fetch": "^2.6.0",
     "node-opus": "^0.3.3",
+    "parse-time": "^0.1.4",
     "simple-youtube-api": "^5.2.1",
     "ytdl-core-discord": "^1.0.3"
   },
