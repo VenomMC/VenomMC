@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 module.exports.run = async (client, message) => {
   if (!message.guild || !message.guild.available) return;
   if (message.author.bot) return;
@@ -7,6 +9,10 @@ module.exports.run = async (client, message) => {
     else client.nou[message.author.id] = 1;
   }
   if (message.guild.id === client.config.officialserver) client.functions.get('checkLOA').run(message);
+
+  const automod = client.functions.get('automod').run(message);
+  if (automod === 'flood') return message.delete();
+
   if (!message.content.startsWith(client.config.prefix) || message.content === client.config.prefix) return;
 
   const args = message.content.slice(client.config.prefix.length).split(/ +/g);
@@ -15,7 +21,7 @@ module.exports.run = async (client, message) => {
   if ((/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi).test(message.content) &&
       message.channel.permissionsFor(client.user).has('MANAGE_MESSAGES') &&
       !client.config.owners.includes(message.author.id) &&
-      message.guild.id === client.config.officialserver) return message.delete(); // eslint-disable-line consistent-return
+      message.guild.id === client.config.officialserver) return message.delete();
 
   if (!client.commands.has(cmd)) return;
 
