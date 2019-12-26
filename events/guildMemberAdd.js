@@ -18,7 +18,7 @@ Hello ${member}, Welcome to **Venom | Official Discord!**
 :large_blue_diamond: •[Information]• :large_blue_diamond:
 •IP: play.venommc.net 
 • Website: https://www.venommc.net/
-• Discord: https://discord.gg/buwceKF
+• Discord: https://discord.gg/cTDachA
 • Sponsor: HostLabs - https://discord.gg/CETRcad
 ((Make a new invite for personal use))
   `);
