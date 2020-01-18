@@ -7,8 +7,8 @@ module.exports.run = async (client, message, args) => {
 
   const row = (await client.query('SELECT * FROM rep WHERE userid = $1 AND active = $2', [ member.id, true ])).rows[0];
   let type = 'neutral';
-  if (row.bool) type = 'positive';
-  else if (!row.bool) type = 'negative';
+  if (row && row.bool) type = 'positive';
+  else if (row && !row.bool) type = 'negative';
   if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${type}.`);
   if (!client.config.owners.includes(message.author.id)) return message.reply('Only bot owners can set reps for staff members.');
   if (member.id === message.author.id) return message.reply('You cannot rep yourself.');
