@@ -2,7 +2,6 @@ module.exports.run = async (client, message, args) => {
   if (!args[1]) return message.reply('You must provide a member to rep.');
   const member = message.guild.members.get(args[1].replace(/[<>@!?]/g, ''));
   if (!member) return message.reply('The member provided was invalid.');
-  if (member.id === message.author.id) return message.reply('You cannot rep yourself.');
   if (member.user.bot) return message.reply('You cannot rep a bot.');
   if (!member.roles.has(client.config.staffrole)) return message.reply('The member has to be a staff member.');
 
@@ -12,6 +11,7 @@ module.exports.run = async (client, message, args) => {
   else if (!row.bool) type = 'negative';
   if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${type}.`);
   if (!client.config.owners.includes(message.author.id)) return message.reply('Only bot owners can set reps for staff members.');
+  if (member.id === message.author.id) return message.reply('You cannot rep yourself.');
 
   if (![ '+', '-' ].includes(args[2])) return message.reply('I did not receive a "+" or a "-". Please try again.');
   const bool = args[2] === '+';
