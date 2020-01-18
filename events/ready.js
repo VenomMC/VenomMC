@@ -2,7 +2,7 @@ function checkStream (client) {
   const member = client.guilds.get(client.config.officialserver).members.get(client.config.owners[0]);
 
   return setInterval(() => {
-    const activity = member.presence.activites.find(a => a.type === 'STREAMING');
+    const activity = member.presence.activities.find(a => a.type === 'STREAMING');
 
     if (client.user.presence.activities[0].type !== 'STREAMING' && activity) {
       return client.user.setActivity(`${activity.name}`, {
