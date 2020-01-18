@@ -11,6 +11,7 @@ module.exports.run = async (client, message, args) => {
   if (member.id === message.author.id) return message.reply('You cannot rep yourself.');
 
   const val = parseInt(args[2], 10);
+  if (isNaN(val)) return message.reply('The reputation value must be a number.');
   if (val < -100 || val > 100) return message.reply('The rep value must be from -100 to 100.');
   if (row && row.val === val) return message.reply(`The rep for that member is already \`${val}\`.`);
 
