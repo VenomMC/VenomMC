@@ -3,7 +3,6 @@ module.exports.run = async (client, message, args) => {
   const member = message.guild.members.get(args[1].replace(/[<>@!?]/g, ''));
   if (!member) return message.reply('The member provided was invalid.');
   if (member.user.bot) return message.reply('You cannot rep a bot.');
-  if (!member.roles.has(client.config.staffrole)) return message.reply('The member has to be a staff member.');
 
   const row = (await client.query('SELECT * FROM rep WHERE userid = $1 AND active = $2', [ member.id, true ])).rows[0];
   if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${row ? row.val : 0}.`);

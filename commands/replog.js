@@ -1,6 +1,6 @@
 async function verifyStaff (client, guild) {
   const { rows } = await client.query('SELECT * FROM rep ORDER BY time DESC LIMIT 10');
-  const invalid = rows.find(r => !guild.members.has(r.userid) || !guild.members.get(r.userid).roles.has(client.config.staffrole));
+  const invalid = rows.find(r => !guild.members.has(r.userid));
   if (invalid) {
     await client.query('DELETE FROM rep WHERE userid = $1', [ invalid.userid ]);
     return verifyStaff(client, guild);
