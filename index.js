@@ -1,16 +1,22 @@
 /* eslint-disable global-require */
 
 require('dotenv').config();
+
+const { Pool } = require('pg');
+const pool = new Pool();
+
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client({
-  disableEveryone: true
+  disableEveryone: true,
+  fetchAllMembers: true
 });
 client.config = require('./config.json');
 client.Discord = Discord;
 client.escMD = Discord.Util.escapeMarkdown;
 client.fetch = require('node-fetch');
 client.nou = {};
+client.query = pool.query.bind(pool);
 
 client.commands = new Discord.Collection();
 client.functions = new Discord.Collection();
