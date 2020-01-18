@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (!member.roles.has(client.config.staffrole)) return message.reply('The member has to be a staff member.');
 
   const row = (await client.query('SELECT * FROM rep WHERE userid = $1 AND active = $2', [ member.id, true ])).rows[0];
-  if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${row ? row.value : 0}.`);
+  if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${row ? row.val : 0}.`);
   if (!client.config.owners.includes(message.author.id)) return message.reply('Only bot owners can set reps for staff members.');
   if (member.id === message.author.id) return message.reply('You cannot rep yourself.');
 
