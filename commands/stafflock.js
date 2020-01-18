@@ -6,7 +6,7 @@ module.exports.run = (client, message, args) => {
 
   channels.forEach(c => c.overwritePermissions({
     permissionOverwrites: {
-      id: '592498342307823616',
+      id: client.config.staffrole,
       deny: [ 'SEND_MESSAGES' ]
     }
   }));
