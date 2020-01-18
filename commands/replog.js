@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 
   const embed = new client.Discord.MessageEmbed()
     .setColor(0x00FF00)
-    .setDescription(rows.map(r => `**${client.functions.get('formatTime').run(Date.now() - r.time)} ago** - ${client.escMD(client.users.get(r.userid).tag)} \`${r.bool ? 'POSITIVE' : 'NEGATIVE'}\` by ${client.escMD(client.users.get(r.by).tag)}`).join('\n'))
+    .setDescription(rows.map(r => `**${client.functions.get('formatTime').run(Date.now() - r.time)} ago** - ${client.escMD(client.users.get(r.userid).tag)} \`${r.val}\` by ${client.escMD(client.users.get(r.by).tag)}`).join('\n'))
     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
     .setTimestamp()
     .setTitle('Recent Reputation Updates');
