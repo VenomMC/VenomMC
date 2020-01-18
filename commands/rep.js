@@ -7,11 +7,13 @@ module.exports.run = async (client, message, args) => {
   if (!member.roles.has(client.config.staffrole)) return message.reply('The member has to be a staff member.');
 
   const row = (await client.query('SELECT * FROM rep WHERE userid = $1 AND active = $2', [ member.id, true ])).rows[0];
-
-  if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${row ? row.bool ? 'positive' : 'negative' : 'neutral'}.`);
+  let type = 'neutral';
+  if (row.bool) type = 'positive';
+  else if (!row.bool) type = 'negative';
+  if (!args[2]) return message.channel.send(`The current rep for ${client.escMD(member.user.tag)} (ID: ${member.id}) is ${type}.`);
   if (!client.config.owners.includes(message.author.id)) return message.reply('Only bot owners can set reps for staff members.');
 
-  if (!['+', '-'].includes(args[2])) return message.reply('I did not receive a "+" or a "-". Please try again.');
+  if (![ '+', '-' ].includes(args[2])) return message.reply('I did not receive a "+" or a "-". Please try again.');
   const bool = args[2] === '+';
   if (row && row.bool === bool) return message.reply(`The rep for that member is already ${bool ? 'positive' : 'negative'}.`);
 

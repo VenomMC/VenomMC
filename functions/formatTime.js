@@ -4,4 +4,4 @@ module.exports.run = timeLeft => {
   const s = Math.floor(timeLeft / 1000 % 60);
 
   return `${h}h ${m}m ${s}s`;
-}
+};
