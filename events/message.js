@@ -27,10 +27,6 @@ module.exports.run = async (client, message) => {
 
   if (!client.commands.has(cmd)) return;
 
-  if (client.user.presence.status === 'idle') client.user.setStatus('online');
-  else clearTimeout(client.timeout);
-  client.timeout = setTimeout(() => client.user.setStatus('idle'), 1000 * 60 * 5);
-
   const info = client.commands.get(cmd);
   if (info.help.venom && message.guild.id === client.config.officialserver) info.run(client, message, args);
   else if (!info.help.venom) info.run(client, message, args);
