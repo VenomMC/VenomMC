@@ -11,7 +11,10 @@ module.exports.run = message => {
   if (message.channel.name !== 'staff-loa') return;
   if (!message.channel.permissionsFor(message.guild.me).has([ 'VIEW_CHANNEL', 'SEND_MESSAGES' ])) return;
   if (!message.content.toLowerCase().includes('reason: ')) return;
-  if (message.content.toLowerCase().includes('reason: i don\'t have time')) return message.reply('Declined :x:'); // eslint-disable-line consistent-return
+  if (message.content.toLowerCase().includes('reason: i don\'t have time')) {
+    message.reply('Declined :x:');
+    return;
+  }
   if (!acceptedReasons.some(r => message.content.toLowerCase().includes(`reason: ${r}`))) return;
 
   const embed = new MessageEmbed()
