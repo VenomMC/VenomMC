@@ -1,6 +1,6 @@
 async function verifyStaff (client, guild) {
   const { rows } = await client.query('SELECT * FROM rep ORDER BY time DESC LIMIT 10');
-  const invalid = rows.find(r => !guild.members.has(r.userid));
+  const invalid = rows.find(r => !guild.members.cache.has(r.userid));
   if (invalid) {
     await client.query('DELETE FROM rep WHERE userid = $1', [ invalid.userid ]);
     return verifyStaff(client, guild);
@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 
   const embed = new client.Discord.MessageEmbed()
     .setColor(0x00FF00)
-    .setDescription(rows.map(r => `**${client.functions.get('formatTime').run(Date.now() - r.time)} ago** - ${client.escMD(client.users.get(r.userid).tag)} \`${r.val}\` by ${client.escMD(client.users.get(r.by).tag)}`).join('\n'))
+    .setDescription(rows.map(r => `**${client.functions.get('formatTime').run(Date.now() - r.time)} ago** - ${client.escMD(client.users.cache.get(r.userid).tag)} \`${r.val}\` by ${client.escMD(client.users.cache.get(r.by).tag)}`).join('\n'))
     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
     .setTimestamp()
     .setTitle('Recent Reputation Updates');

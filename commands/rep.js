@@ -1,6 +1,6 @@
 module.exports.run = async (client, message, args) => {
   if (!args[1]) return message.reply('You must provide a member to rep.');
-  const member = message.guild.members.get(args[1].replace(/[<>@!?]/g, ''));
+  const member = message.guild.members.cache.get(args[1].replace(/[<>@!?]/g, ''));
   if (!member) return message.reply('The member provided was invalid.');
   if (member.user.bot) return message.reply('You cannot rep a bot.');
 

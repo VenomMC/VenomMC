@@ -22,6 +22,6 @@ module.exports.run = message => {
     .setDescription(message.content)
     .setFooter(`Sent by: ${message.author.tag}`, message.author.displayAvatarURL())
     .setColor(0x00FF00);
-  message.guild.channels.find(c => c.name === 'management-loa-logs' && c.type === 'text').send(embed);
+  message.guild.channels.cache.find(c => c.name === 'management-loa-logs' && c.type === 'text').send(embed);
   message.reply('Accepted :white_check_mark:');
 };
