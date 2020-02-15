@@ -13,7 +13,7 @@ module.exports.run = (client, message, args) => {
     for (const category in categories) {
       if (Object.prototype.hasOwnProperty.call(categories, category)) {
         const output = categories[category].map(cmd => `- \`${client.config.prefix}${client.commands.findKey(c => c === cmd)}\``);
-        embed.addField(category, output.join('\n'));
+        embed.addField(category, output.join('\n'), true);
       }
     }
 
