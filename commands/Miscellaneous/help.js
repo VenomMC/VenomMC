@@ -3,9 +3,7 @@ module.exports.run = (client, message, args) => {
   if (!args[1]) {
     const categories = {};
     client.categories.forEach(category => {
-      categories[category] = [];
-      const filtered = client.commands.filter(cmd => cmd.help.category === category);
-      filtered.forEach(cmd => categories[category].push(cmd));
+      categories[category] = client.commands.filter(cmd => cmd.help.category === category);
     });
     const embed = new client.Discord.MessageEmbed()
       .setTitle('Commands List')
@@ -14,7 +12,7 @@ module.exports.run = (client, message, args) => {
 
     for (const category in categories) {
       if (Object.prototype.hasOwnProperty.call(categories, category)) {
-        const output = categories[category].map(cmd => `- \`${client.config.prefix}${cmd}\``);
+        const output = categories[category].map(cmd => `- \`${client.config.prefix}${client.commands.findKey(c => c === cmd)}\``);
         embed.addField(category, output.join('\n'));
       }
     }
