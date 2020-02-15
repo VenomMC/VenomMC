@@ -26,7 +26,7 @@ client.cmdList = {};
 client.eventList = fs.readdirSync('./events').filter(f => f.endsWith('.js'));
 client.fnList = fs.readdirSync('./functions').filter(f => f.endsWith('.js'));
 
-client.categories.forEach(category => fs.readdirSync(`./commands/${category}`).forEach(cmd => client.commands.set(cmd.slice(0, -3), require(`./commands${category}/${cmd}`))));
+client.categories.forEach(category => fs.readdirSync(`./commands/${category}`).forEach(cmd => client.commands.set(cmd.slice(0, -3), require(`./commands/${category}/${cmd}`))));
 client.fnList.forEach(fn => client.functions.set(fn.slice(0, -3), require(`./functions/${fn}`)));
 client.eventList.forEach(event => client.on(event.slice(0, -3), (...args) => require(`./events/${event}`).run(client, ...args)));
 
