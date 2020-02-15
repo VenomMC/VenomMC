@@ -1,11 +1,10 @@
 module.exports.run = (client, message, args) => {
   if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) return message.reply(':x: I do not have the required permission `Embed Links` in this channel.');
   if (!args[1]) {
-    const commands = client.commands.filter(c => !c.private || client.config.owners.includes(message.author.id)).keyArray();
     const categories = {};
     client.categories.forEach(category => {
       categories[category] = [];
-      const filtered = commands.filter(cmd => cmd.help.category === category);
+      const filtered = client.commands.filter(cmd => cmd.help.category === category);
       filtered.forEach(cmd => categories[category].push(cmd));
     });
     const embed = new client.Discord.MessageEmbed()
