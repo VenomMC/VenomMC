@@ -18,14 +18,15 @@ client.fetch = require('node-fetch');
 client.nou = {};
 client.query = pool.query.bind(pool);
 
+client.categories = fs.readdirSync('./commands');
 client.commands = new Discord.Collection();
 client.functions = new Discord.Collection();
 
-client.cmdList = fs.readdirSync('./commands').filter(f => f.endsWith('.js'));
+client.cmdList = {};
 client.eventList = fs.readdirSync('./events').filter(f => f.endsWith('.js'));
 client.fnList = fs.readdirSync('./functions').filter(f => f.endsWith('.js'));
 
-client.cmdList.forEach(cmd => client.commands.set(cmd.slice(0, -3), require(`./commands/${cmd}`)));
+client.categories.forEach(category => fs.readdirSync(`./commands/${category}`).forEach(cmd => client.commands.set(cmd.slice(0, -3), require(`./commands/${cmd}`))));
 client.fnList.forEach(fn => client.functions.set(fn.slice(0, -3), require(`./functions/${fn}`)));
 client.eventList.forEach(event => client.on(event.slice(0, -3), (...args) => require(`./events/${event}`).run(client, ...args)));
 

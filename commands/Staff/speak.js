@@ -16,6 +16,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Staff',
   desc: 'Says something in a channel.',
   usage: 'speak <Channel> <Message>'
 };

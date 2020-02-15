@@ -6,6 +6,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Fun',
   desc: 'Displays a "no u" counter.',
   usage: 'nou [Member]'
 };

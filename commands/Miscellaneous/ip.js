@@ -9,6 +9,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Displays the IP of the server.',
   usage: 'ip',
   venom: true

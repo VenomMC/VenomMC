@@ -19,6 +19,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Staff',
   desc: 'Announces something to #announcements.',
   usage: 'announce <Content>'
 };

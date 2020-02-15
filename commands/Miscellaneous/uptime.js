@@ -3,6 +3,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Outputs the uptime of the bot.',
   usage: 'uptime'
 };

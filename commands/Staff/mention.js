@@ -13,6 +13,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Staff',
   desc: 'Pings the notification role.',
   usage: 'mention',
   venom: true

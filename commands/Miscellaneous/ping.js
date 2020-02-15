@@ -4,6 +4,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Outputs the ping of the bot.',
   usage: 'ping'
 };

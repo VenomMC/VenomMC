@@ -20,6 +20,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Staff',
   desc: 'Gives a member a rep.',
   usage: 'rep <Member> [Rep Value]'
 };

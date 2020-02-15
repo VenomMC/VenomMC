@@ -7,14 +7,15 @@ module.exports.run = (client, message, args) => {
   channels.forEach(c => c.overwritePermissions({
     permissionOverwrites: {
       id: client.config.staffrole,
-      allow: [ 'SEND_MESSAGES' ]
+      deny: [ 'SEND_MESSAGES' ]
     }
   }));
-  return message.channel.send('Successfully unlocked all the staff channels.');
+  return message.channel.send('Successfully locked all the staff channels.');
 };
 
 module.exports.help = {
-  desc: 'Unlocks all the staff channels.',
-  usage: 'staffunlock',
+  category: 'Staff',
+  desc: 'Locks all the staff channels.',
+  usage: 'stafflock',
   venom: true
 };

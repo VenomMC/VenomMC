@@ -26,6 +26,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Gets logs for the past 10 reps.',
   usage: 'replog'
 };

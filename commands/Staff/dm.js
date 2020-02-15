@@ -18,6 +18,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Staff',
   desc: 'DMs a member.',
   usage: 'dm <Member> <Message>'
 };

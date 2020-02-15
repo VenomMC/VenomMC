@@ -1,12 +1,24 @@
 module.exports.run = (client, message, args) => {
   if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) return message.reply(':x: I do not have the required permission `Embed Links` in this channel.');
   if (!args[1]) {
-    const commands = client.commands.filter(c => !c.private || client.config.owners.includes(message.author.id)).keyArray().map(cmd => `${client.config.prefix}**${cmd}**`);
+    const commands = client.commands.filter(c => !c.private || client.config.owners.includes(message.author.id)).keyArray();
+    const categories = {};
+    client.categories.forEach(category => {
+      categories[category] = [];
+      const filtered = commands.filter(cmd => cmd.help.category === category);
+      filtered.forEach(cmd => categories[category].push(cmd));
+    });
     const embed = new client.Discord.MessageEmbed()
       .setTitle('Commands List')
       .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
-      .setColor(0x00FF00)
-      .setDescription(commands.join('\n'));
+      .setColor(0x00FF00);
+
+    for (const category in categories) {
+      if (Object.prototype.hasOwnProperty.call(categories, category)) {
+        const output = categories[category].map(cmd => `- \`${client.config.prefix}${cmd}\``);
+        embed.addField(category, output.join('\n'));
+      }
+    }
 
     return message.channel.send(embed);
   }
@@ -20,6 +32,7 @@ module.exports.run = (client, message, args) => {
     .setTitle(`${client.config.prefix + cmd} Command Info`)
     .addField('Description', info.desc, true)
     .addField('Usage', client.config.prefix + info.usage, true)
+    .addField('Category', info.category, true)
     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
     .setColor(0x00FF00);
 
@@ -27,6 +40,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Displays the help menu.',
   usage: 'help [Command]'
 };

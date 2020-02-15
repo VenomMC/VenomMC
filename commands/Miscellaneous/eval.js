@@ -32,6 +32,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Evaluates code.',
   usage: 'eval <Code>'
 };

@@ -11,6 +11,7 @@ module.exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Tickets',
   desc: 'Closes a ticket.',
   usage: 'close',
   venom: true

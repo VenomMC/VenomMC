@@ -27,6 +27,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Tickets',
   desc: 'Creates a ticket.',
   usage: 'new',
   venom: true

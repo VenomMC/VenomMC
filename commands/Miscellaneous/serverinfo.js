@@ -16,6 +16,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
+  category: 'Miscellaneous',
   desc: 'Displays the information about the Minecraft server.',
   usage: 'serverinfo'
 };
