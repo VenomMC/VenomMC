@@ -1,5 +1,5 @@
 module.exports.run = async (client, message, args) => {
-  const category = message.guild.channels.get(client.config.ticketcategory);
+  const category = message.guild.channels.cache.get(client.config.ticketcategory);
   if (!category) return message.reply(':x: I did not find the ticket category.');
 
   if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return message.reply(':x: I do not have the required permission `Manage Channels`.');
