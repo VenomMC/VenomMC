@@ -9,8 +9,7 @@ module.exports.run = async (client, message, args) => {
 
   const channel = await message.guild.channels.create(`ticket-${message.author.username}`, {
     parent: category,
-    topic: message.author.id,
-    permissionOverwrites: category.permissions
+    topic: message.author.id
   });
   channel.createOverwrite(message.author, {
     VIEW_CHANNEL: true,
