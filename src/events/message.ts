@@ -5,8 +5,8 @@ export async function run (client: VenomClient, message: GuildMessage) {
   if (!message.guild?.available) return;
 
   const automod = client.functions.automod(message);
-  if (!message.member.hasPermission('ADMINISTRATOR') && automod === 'flood') return message.delete();
   if (message.author.bot) return;
+  if (!message.member.hasPermission('ADMINISTRATOR') && automod === 'flood') return message.delete();
 
   if (message.content.toLowerCase().includes('no u')) {
     if (client.nou[message.author.id]) client.nou[message.author.id] += 1;
