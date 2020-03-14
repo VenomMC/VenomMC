@@ -13,7 +13,7 @@ const client = new VenomClient({
 
 const categories = readdirSync('./dist/commands');
 categories.forEach(c => readdirSync(`./dist/commands/${c}`).forEach(cmd => {
-  const command: Command = require(`../commands/${c}/${cmd}`);
+  const command: Command = require(`./commands/${c}/${cmd}`);
   client.commands.set(cmd.slice(0, -3), command);
 
   if (!Object.values(client.commands.categories).includes(command.help.category)) client.commands.categories[c] = command.help.category;
