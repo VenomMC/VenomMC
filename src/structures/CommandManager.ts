@@ -8,7 +8,6 @@ export class CommandManager extends Collection<string, Command> {
 
     const categories = readdirSync('./dist/commands');
     categories.forEach(c => readdirSync(`./dist/commands/${c}`).forEach(cmd => {
-      this.list.push(cmd.slice(0, -3));
       const command: Command = require(`../commands/${c}/${cmd}`); // eslint-disable-line @typescript-eslint/no-var-requires, global-require
       this.set(cmd.slice(0, -3), command);
 
@@ -21,6 +20,4 @@ export class CommandManager extends Collection<string, Command> {
   public checkAlias (cmd: string) {
     return this.findKey((c, key) => key === cmd || c.help.aliases.includes(cmd));
   }
-
-  public list: string[] = [];
 }
