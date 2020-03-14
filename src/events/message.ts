@@ -3,6 +3,9 @@ import { VenomClient } from '../structures/Client';
 
 export async function run (client: VenomClient, message: GuildMessage) {
   if (!message.guild?.available) return;
+
+  const automod = client.functions.automod(message);
+  if (!message.member.hasPermission('ADMINISTRATOR') && automod === 'flood') return message.delete();
   if (message.author.bot) return;
 
   if (message.content.toLowerCase().includes('no u')) {
@@ -10,9 +13,6 @@ export async function run (client: VenomClient, message: GuildMessage) {
     else client.nou[message.author.id] = 1;
   }
   if (message.guild.id === client.config.officialserver) client.functions.checkLOA(message);
-
-  const automod = client.functions.automod(message);
-  if (!message.member.hasPermission('ADMINISTRATOR') && automod === 'flood') return message.delete();
 
   if ((/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi).test(message.content) &&
     message.channel.permissionsFor(client.user!)!.has('MANAGE_MESSAGES') &&
