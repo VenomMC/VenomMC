@@ -4,18 +4,30 @@ module.exports = exports = {
     "env": {
         "browser": true,
         "amd": true,
-        "node": true
+        "node": true,
+        "es6": true
     },
 
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+
+    "parser": "@typescript-eslint/parser",
 
     "parserOptions": {
-        "ecmaVersion": 8
+        "ecmaVersion": 8,
+        "sourceType": "module"
     },
+
+    "plugins": [
+        "@typescript-eslint/eslint-plugin",
+        "import"
+    ],
 
     "rules": {
         // Possible Errors (overrides from recommended set)
-        "no-extra-parens": ERROR,
+        "no-extra-parens": WARN,
         "no-unexpected-multiline": ERROR,
         // All JSDoc comments must be valid
         "valid-jsdoc": [ ERROR, {
@@ -35,7 +47,7 @@ module.exports = exports = {
             "setWithoutGet": true
         }],
         "block-scoped-var": WARN,
-        "consistent-return": ERROR,
+        "consistent-return": OFF,
         "curly": OFF,
         "default-case": WARN,
         // the dot goes with the property when doing multiline
@@ -60,7 +72,7 @@ module.exports = exports = {
             "string": true
         }],
         "no-implied-eval": ERROR,
-        "no-invalid-this": ERROR,
+        "no-invalid-this": OFF,
         "no-iterator": ERROR,
         "no-labels": WARN,
         "no-lone-blocks": WARN,
@@ -73,25 +85,25 @@ module.exports = exports = {
         "no-new-wrappers": ERROR,
         "no-new": ERROR,
         "no-octal-escape": ERROR,
-        "no-param-reassign": ERROR,
+        "no-param-reassign": OFF,
         "no-process-env": OFF,
         "no-proto": ERROR,
         "no-redeclare": ERROR,
-        "no-return-assign": ERROR,
+        "no-return-assign": OFF,
         "no-script-url": ERROR,
         "no-self-compare": ERROR,
         "no-throw-literal": ERROR,
         "no-unused-expressions": ERROR,
         "no-useless-call": ERROR,
         "no-useless-concat": ERROR,
-        "no-void": WARN,
+        "no-void": OFF,
         // Produce warnings when something is commented as TODO or FIXME
         "no-warning-comments": [ WARN, {
             "terms": [ "TODO", "FIXME" ],
             "location": "start"
         }],
         "no-with": WARN,
-        "radix": WARN,
+        "radix": [ WARN, "as-needed" ],
         "vars-on-top": ERROR,
         // Enforces the style of wrapped functions
         "wrap-iife": [ ERROR, "outside" ],
@@ -101,7 +113,7 @@ module.exports = exports = {
         "strict": [ ERROR, "never" ],
 
         // Variables
-        "init-declarations": [ ERROR, "always" ],
+        "init-declarations": OFF,
         "no-catch-shadow": WARN,
         "no-delete-var": ERROR,
         "no-label-var": ERROR,
@@ -110,11 +122,12 @@ module.exports = exports = {
         // We require all vars to be initialized (see init-declarations)
         // If we NEED a var to be initialized to undefined, it needs to be explicit
         "no-undef-init": OFF,
-        "no-undef": ERROR,
+        "no-undef": OFF,
         "no-undefined": OFF,
         "no-unused-vars": [ ERROR, { args: "none" }],
         // Disallow hoisting - let & const don't allow hoisting anyhow
         "no-use-before-define": ERROR,
+        "require-atomic-updates": OFF,
 
         // Node.js and CommonJS
         "callback-return": [ WARN, [ "callback", "next" ]],
@@ -137,7 +150,7 @@ module.exports = exports = {
         "no-class-assign": ERROR,
         "no-confusing-arrow": ERROR,
         "no-const-assign": ERROR,
-        "no-dupe-class-members": ERROR,
+        "no-dupe-class-members": OFF,
         "no-this-before-super": ERROR,
         "no-var": ERROR,
         "object-shorthand": [ WARN, "never" ],
@@ -160,7 +173,7 @@ module.exports = exports = {
         "func-names": [ WARN, "as-needed" ],
         "func-style": [ WARN, "declaration" ],
         "id-length": OFF,
-        "indent": [ WARN, 2 ],
+        "indent": [ WARN, 2, { "SwitchCase": 1 } ],
         "jsx-quotes": [ WARN, "prefer-single" ],
         "keyword-spacing": [ ERROR, { before: true, after: true } ],
         "linebreak-style": [ WARN, "unix" ],
@@ -197,6 +210,12 @@ module.exports = exports = {
         "require-jsdoc": OFF,
         "semi-spacing": [ WARN, { "before": false, "after": true }],
         "semi": [ ERROR, "always" ],
+        "sort-imports": [ WARN, {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": [ 'none', 'all', 'single', 'multiple' ]
+        }],
         "sort-vars": OFF,
         "space-before-blocks": [ WARN, "always" ],
         "space-before-function-paren": [ WARN, "always" ],
@@ -204,6 +223,15 @@ module.exports = exports = {
         "space-infix-ops": [ WARN, { "int32Hint": true } ],
         "space-unary-ops": ERROR,
         "spaced-comment": [ WARN, "always" ],
-        "wrap-regex": WARN
+        "wrap-regex": WARN,
+
+        // Typescript Rules
+        "@typescript-eslint/explicit-function-return-type": OFF,
+        "@typescript-eslint/explicit-member-accessibility": ERROR,
+        "@typescript-eslint/no-explicit-any": OFF,
+        "@typescript-eslint/no-non-null-assertion": OFF,
+        "@typescript-eslint/no-unused-vars": [ WARN, { args: "none" }],
+
+        "import/no-commonjs": [ ERROR, { allowRequire: true } ]
     }
 };
