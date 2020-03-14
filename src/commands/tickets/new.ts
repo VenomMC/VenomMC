@@ -29,7 +29,7 @@ export async function run (client: VenomClient, message: GuildMessage, args: str
 
 export const help: HelpObj = {
   aliases: [],
-  category: 'Staff',
+  category: 'Tickets',
   desc: 'Creates a ticket.',
   usage: 'new',
   venom: true

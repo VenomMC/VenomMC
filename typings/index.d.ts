@@ -4,7 +4,8 @@ declare module 'VenomBot' {
 
   type CommandCategory = 'Fun'
     | 'Miscellaneous'
-    | 'Staff';
+    | 'Staff'
+    | 'Tickets';
 
   interface Command {
     clientPerms: PermissionString[];
