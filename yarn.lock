@@ -331,8 +331,8 @@ delayed-stream@~1.0.0:
 
 discord.js@discordjs/discord.js:
   version "12.0.2"
-  uid a53404fac3a5241abb3db94fd543ce1850d7251f
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/a53404fac3a5241abb3db94fd543ce1850d7251f"
+  uid "7994b5612a8d791c02503648c954ca38072433b9"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/7994b5612a8d791c02503648c954ca38072433b9"
   dependencies:
     "@discordjs/collection" "^0.1.5"
     abort-controller "^3.0.0"
