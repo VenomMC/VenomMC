@@ -4,6 +4,7 @@ import { GuildMessage, HelpObj } from 'VenomBot';
 
 export async function run (client: VenomClient, message: GuildMessage, args: string[]) {
   if (!message.member.roles.cache.some(r => r.name === 'Management')) return message.reply('You must be part of Management to use this command.');
+  if (message.channel.name !== 'management-bot-commands') return message.reply('You can only run this command in #management-bot-commands.');
 
   if (!args[1]) return message.reply('You must provide a member to give the Pending status to.');
   const member = await message.guild.members.fetch(args[1].replace(/[<>@!?]/g, '')).catch(() => null);
