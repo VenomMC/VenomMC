@@ -14,7 +14,7 @@ export async function run (client: VenomClient, message: GuildMessage, args: str
   if (message.guild.me!.roles.highest.comparePositionTo(pending) <= 0) return message.reply('My role position is not high enough to remove the Pending role.');
 
   const { rows } = await client.query('SELECT * FROM pending WHERE userid = $1', [ member.id ]);
-  if (rows.length === 1) return message.reply('That member is not in a Pending status.');
+  if (rows.length === 0) return message.reply('That member is not in a Pending status.');
 
   if (member.roles.cache.has(pending.id)) member.roles.remove(pending);
   client.query('DELETE FROM pending WHERE userid = $1', [ member.id ]);
