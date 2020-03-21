@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires, global-require */
 
+import { ClientEvents } from 'discord.js';
 import { Command } from 'VenomBot';
 import { VenomClient } from './structures/Client';
 import { config } from 'dotenv';
@@ -19,7 +20,7 @@ categories.forEach(c => readdirSync(`./dist/commands/${c}`).forEach(cmd => {
   if (!Object.values(client.commands.categories).includes(command.help.category)) client.commands.categories[c] = command.help.category;
 }));
 
-readdirSync('./dist/events').forEach(event => client.on(event.slice(0, -3), (...args) => require(`./events/${event}`).run(client, ...args)));
+readdirSync('./dist/events').forEach(event => client.on(event.slice(0, -3) as keyof ClientEvents, (...args) => require(`./events/${event}`).run(client, ...args)));
 
 client.login(process.env.BOT_TOKEN);
 
