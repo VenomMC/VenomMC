@@ -46,7 +46,7 @@ function setCron (client: VenomClient) {
       if (member.roles.cache.has(pending.id)) member.roles.remove(pending);
       if (!member.roles.cache.has(staff.id)) member.roles.add(staff);
       if (!member.roles.cache.has(helper.id)) member.roles.add(helper);
-      
+
       const channel = guild.channels.cache.find(c => c.type === 'text' && c.name === 'changelog') as TextChannel;
       if (channel && channel.permissionsFor(client.user!)!.has([ 'SEND_MESSAGES', 'VIEW_CHANNEL' ])) channel.send(`**${member.displayName}**: Member - Helper`);
     }
