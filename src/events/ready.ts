@@ -1,3 +1,4 @@
+import { TextChannel } from 'discord.js';
 import { VenomClient } from '../structures/Client';
 import fetch from 'node-fetch';
 import { schedule } from 'node-cron';
@@ -41,10 +42,13 @@ function setCron (client: VenomClient) {
     for (const row of rows) {
       const member = await guild.members.fetch(row.userid).catch(() => null);
       if (!member) return;
-      member.setNickname(`Helper | ${member.displayName}`);
+      await member.setNickname(`Helper | ${member.displayName}`);
       if (member.roles.cache.has(pending.id)) member.roles.remove(pending);
       if (!member.roles.cache.has(staff.id)) member.roles.add(staff);
       if (!member.roles.cache.has(helper.id)) member.roles.add(helper);
+      
+      const channel = guild.channels.cache.find(c => c.type === 'text' && c.name === 'changelog') as TextChannel;
+      if (channel && channel.permissionsFor(client.user!)!.has([ 'SEND_MESSAGES', 'VIEW_CHANNEL' ])) channel.send(`**${member.displayName}**: Member - Helper`);
     }
   }, {
     timezone: 'America/New_York'
