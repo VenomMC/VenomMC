@@ -35,7 +35,7 @@ function setCron (client: VenomClient) {
     if (!staff) return;
     if (guild.me!.roles.highest.comparePositionTo(staff) <= 0) return;
 
-    const helper = guild.roles.cache.find(r => r.name === 'Staff');
+    const helper = guild.roles.cache.find(r => r.name === 'Helper');
     if (!helper) return;
     if (guild.me!.roles.highest.comparePositionTo(helper) <= 0) return;
 
