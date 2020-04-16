@@ -1,13 +1,13 @@
 import { VenomClient } from '../../structures/Client';
 import { GuildMessage, HelpObj } from 'VenomBot';
-import { MessageEmbed, PermissionString } from 'discord.js';
+import { MessageEmbed, PermissionString, TextChannel } from 'discord.js';
 
 export async function run (client: VenomClient, message: GuildMessage, args: string[]) {
   const category = message.guild.channels.cache.get(client.config.ticketcategory);
   if (!category) return message.reply(':x: I did not find the ticket category.');
   if (!category.permissionsFor(client.user!)!.has('MANAGE_CHANNELS')) return message.reply(':x: I do not have the required permission `Manage Channels` in the ticket category.');
 
-  if (message.guild.channels.cache.find(c => c.type === 'text' && c.name.startsWith('ticket') && c.topic === message.author.id && c.parentID === client.config.ticketcategory)) return message.reply(':x: You already have a ticket open! Please close that one before making another one.');
+  if (message.guild.channels.cache.find(c => c instanceof TextChannel && c.name.startsWith('ticket') && c.topic === message.author.id && c.parentID === client.config.ticketcategory)) return message.reply(':x: You already have a ticket open! Please close that one before making another one.');
 
   const channel = await message.guild.channels.create(`ticket-${message.author.username}`, {
     parent: category,

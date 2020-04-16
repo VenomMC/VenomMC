@@ -1,5 +1,5 @@
-import { GuildMember } from 'discord.js';
 import { VenomClient } from '../structures/Client';
+import { GuildMember, TextChannel } from 'discord.js';
 
 function addRole (member: GuildMember) {
   if (!member.guild.me!.hasPermission('MANAGE_ROLES')) return;
@@ -12,7 +12,7 @@ function addRole (member: GuildMember) {
 
 function sendMsg (member: GuildMember) {
   const channel = member.guild.channels.cache.find(c => c.name === 'welcome-goodbye');
-  if (!channel || channel.type !== 'text') return;
+  if (!channel || !(channel instanceof TextChannel)) return;
   if (!channel.permissionsFor(member.guild.me!)!.has([ 'VIEW_CHANNEL', 'SEND_MESSAGES' ])) return;
 
   channel.send(`
