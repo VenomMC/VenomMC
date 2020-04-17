@@ -6,7 +6,18 @@ export async function run (client: VenomClient, message: GuildMessage) {
 
   const automod = client.functions.automod(message);
   if (message.author.bot) return;
-  if (!message.member.hasPermission('ADMINISTRATOR') && automod === 'flood') return message.delete();
+  if (!message.member.hasPermission('ADMINISTRATOR')) {
+    switch (automod) {
+      case 'flood':
+        return message.delete();
+
+      case 'ping':
+        message.delete();
+        return message.reply('Please do not ping owners.');
+
+      // no default
+    }
+  }
 
   if (message.content.toLowerCase().includes('no u')) {
     if (client.nou[message.author.id]) client.nou[message.author.id] += 1;

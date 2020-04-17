@@ -1,8 +1,11 @@
+import * as config from '../config.json';
 import { GuildMessage } from 'VenomBot';
 import { MessageEmbed, TextChannel } from 'discord.js';
 
 export class Functions {
   public automod (message: GuildMessage): string | false {
+    if (message.guild.id === config.officialserver && message.mentions.users.some(u => config.noping.includes(u.id))) return 'ping';
+
     if (this.arr[0] === message.author.id) {
       if (this.arr[1] >= 8) return 'flood';
       this.arr[1] += 1;
