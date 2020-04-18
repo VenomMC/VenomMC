@@ -1,9 +1,9 @@
 import { VenomClient } from '../../structures/Client';
 import { GuildMessage, HelpObj } from 'VenomBot';
-import { MessageEmbed, PermissionString, TextChannel } from 'discord.js';
+import { MessageEmbed, NewsChannel, PermissionString } from 'discord.js';
 
 export async function run (client: VenomClient, message: GuildMessage, args: string[]) {
-  const channel = message.guild.channels.cache.find(chan => chan.type === 'text' && chan.name === 'announcements') as TextChannel | undefined;
+  const channel = message.guild.channels.cache.find(chan => chan.type === 'news' && chan.name === 'announcements') as NewsChannel | undefined;
   if (!channel) return message.reply('I did not find the announcements channel.');
   if (!channel.permissionsFor(client.user!)!.has([ 'VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS' ])) return message.reply('I am missing permissions in the announcements channel. Please make sure I have the following permissions.\n\n`View Channel\nSend Messages\nEmbed Links`');
 
