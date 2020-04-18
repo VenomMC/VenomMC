@@ -10,13 +10,13 @@ function addRole (member: GuildMember) {
   member.roles.add(role);
 }
 
-function sendMsg (member: GuildMember) {
+function sendMsg (client: VenomClient, member: GuildMember) {
   const channel = member.guild.channels.cache.find(c => c.name === 'welcome-goodbye');
   if (!channel || !(channel instanceof TextChannel)) return;
   if (!channel.permissionsFor(member.guild.me!)!.has([ 'VIEW_CHANNEL', 'SEND_MESSAGES' ])) return;
 
   channel.send(`
-Hello ${member}, Welcome to **${member.guild.name}!**
+Hello ${member}, Welcome to **${client.escMD(member.guild.name)}!**
 
 :large_blue_diamond: •[Information]• :large_blue_diamond:
 •IP: play.venommc.net 
@@ -32,5 +32,5 @@ export async function run (client: VenomClient, member: GuildMember) {
   if (member.guild.id !== client.config.officialserver) return;
 
   addRole(member);
-  sendMsg(member);
+  sendMsg(client, member);
 }
