@@ -27,7 +27,7 @@ export async function run (client: VenomClient, message: GuildMessage) {
 
   if ((/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi).test(message.content) &&
     message.channel.permissionsFor(client.user!)!.has('MANAGE_MESSAGES') &&
-    !client.config.owners.includes(message.author.id) &&
+    !client.config.bypasslink.includes(message.author.id) &&
     message.guild.id === client.config.officialserver) return message.delete();
 
   if (!message.content.startsWith(client.config.prefix) || message.content === client.config.prefix) return;
