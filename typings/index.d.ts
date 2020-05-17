@@ -25,6 +25,7 @@ declare module 'VenomBot' {
     category: CommandCategory;
     desc: string;
     private?: boolean;
+    staffonly?: boolean;
     usage: string;
     venom?: boolean;
   }

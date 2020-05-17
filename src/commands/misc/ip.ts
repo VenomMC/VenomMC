@@ -15,6 +15,7 @@ export const help: HelpObj = {
   aliases: [],
   category: 'Miscellaneous',
   desc: 'Displays the IP of the server.',
+  staffonly: true,
   usage: 'ip',
   venom: true
 };

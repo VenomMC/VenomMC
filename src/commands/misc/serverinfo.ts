@@ -22,6 +22,7 @@ export const help: HelpObj = {
   aliases: [],
   category: 'Miscellaneous',
   desc: 'Displays the information about the Minecraft server.',
+  staffonly: true,
   usage: 'serverinfo',
   venom: true
 };

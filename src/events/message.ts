@@ -41,5 +41,6 @@ export async function run (client: VenomClient, message: GuildMessage) {
   const info = client.commands.get(cmd)!;
   if (info.help.private && !client.config.owners.includes(message.author.id)) return;
   if (info.help.venom && message.guild.id === client.config.officialserver) info.run(client, message, args);
-  else if (!info.help.venom) info.run(client, message, args);
+  else if (info.help.staffonly && message.guild.id === client.config.staffserver) info.run(client, message, args);
+  else if (!info.help.venom && !info.help.staffonly) info.run(client, message, args);
 }
