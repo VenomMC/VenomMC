@@ -24,6 +24,8 @@ export async function run (client: VenomClient, message: GuildMessage, args: str
     .setTimestamp()
     .setTitle('Role Added');
   (client.channels.cache.get(client.config.roleupdates) as TextChannel).send(embed);
+
+  message.channel.send(`Successfully added ${client.escMD(role.name)} to ${client.escMD(member.user.tag)}.`);
 }
 
 export const help: HelpObj = {
