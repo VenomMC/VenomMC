@@ -22,6 +22,7 @@ export class Functions {
       message.reply('Declined :x:');
       return;
     }
+
     if (!this.acceptedReasons.some(r => message.content.toLowerCase().includes(`reason: ${r}`))) return;
 
     const embed = new MessageEmbed()

@@ -23,6 +23,7 @@ export async function run (client: VenomClient, message: GuildMessage) {
     if (client.nou[message.author.id]) client.nou[message.author.id] += 1;
     else client.nou[message.author.id] = 1;
   }
+
   if (message.guild.id === client.config.officialserver) client.functions.checkLOA(message);
 
   if ((/(?:https?:\/\/)?discord(?:app.com\/invite|.gg)\/[\w\d]+/gi).test(message.content) &&

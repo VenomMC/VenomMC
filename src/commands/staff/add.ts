@@ -26,7 +26,8 @@ export async function run (client: VenomClient, message: GuildMessage, args: str
 export const help: HelpObj = {
   aliases: [],
   category: 'Staff',
-  desc: 'Adds a member as "Pending" and removes the role in the next Sunday at midnight UTC. Once this period is over, the user will receive the Helper and Staff roles. This can be cancelled mid-way with +remove.',
+  desc: 'Adds a member as "Pending" and removes the role in the next Sunday at midnight UTC. Once this period is over, the user will receive the Helper and Staff roles.'
+    + 'This can be cancelled mid-way with +remove.',
   usage: 'add <Member>',
   venom: true
 };

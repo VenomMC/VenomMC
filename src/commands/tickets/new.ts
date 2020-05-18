@@ -7,7 +7,8 @@ export async function run (client: VenomClient, message: GuildMessage, args: str
   if (!category) return message.reply(':x: I did not find the ticket category.');
   if (!category.permissionsFor(client.user!)!.has('MANAGE_CHANNELS')) return message.reply(':x: I do not have the required permission `Manage Channels` in the ticket category.');
 
-  if (message.guild.channels.cache.find(c => c instanceof TextChannel && c.name.startsWith('ticket') && c.topic === message.author.id && c.parentID === client.config.ticketcategory)) return message.reply(':x: You already have a ticket open! Please close that one before making another one.');
+  if (message.guild.channels.cache.find(c => c instanceof TextChannel && c.name.startsWith('ticket') && c.topic === message.author.id && c.parentID === client.config.ticketcategory))
+    return message.reply(':x: You already have a ticket open! Please close that one before making another one.');
 
   const channel = await message.guild.channels.create(`ticket-${message.author.username}`, {
     parent: category,
