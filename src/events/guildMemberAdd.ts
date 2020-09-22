@@ -22,7 +22,6 @@ Hello ${member}, Welcome to **${client.escMD(member.guild.name)}!**
 •IP: play.venommc.net 
 • Website: https://www.venommc.net/
 • Discord: https://invite.gg/venommc
-• Sponsor: HostLabs - https://discord.gg/CETRcad
 ((Make a new invite for personal use))
   `);
 }
