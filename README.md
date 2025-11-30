@@ -1,5 +1,5 @@
 # VenomMC
-A Discord bot for [VenomMC](https://github.com/VenomMC/VenomMC/releases) made in https://github.com/VenomMC/VenomMC/releases (master branch).
+A Discord bot for [VenomMC](https://discord.gg/8E9NUjv) made in Discord.JS (master branch).
 
 ## Setup
 To set this bot up for development or self-hosting, you must create a `.env` file in the root directory. This should have the following content:
@@ -13,7 +13,7 @@ PGUSER=postgres_user_here
 ```
 Of course, all of the values must be replaced with correct ones.
 
-Next, you must install [https://github.com/VenomMC/VenomMC/releases](https://github.com/VenomMC/VenomMC/releases) version 12. If you have done this already, you can skip this step.
+Next, you must install [Node.JS](https://nodejs.org/en/) version 12. If you have done this already, you can skip this step.
 
 This bot uses Yarn and not NPM, so you should install yarn using `npm install yarn --global` if you haven't already. You'll also need Typescript, so `npm install typescript --global`.
 
